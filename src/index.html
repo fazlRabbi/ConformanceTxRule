@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conformance Preserving Model Transformation</title>
+</head>
+<body>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script src="constraintchecking.js"></script>
+<script src="rules.js"></script>
+<script src="transformation.js"></script>
+<script src="Pattern1_1.js"></script>
+<script src="Pattern1_2.js"></script>
+<script src="Pattern2_1.js"></script>
+<script src="Pattern3_1.js"></script>
+<script src="conformancechecker.js"></script>
+
+<span id="output" value="">Span</span>
+
+<script>
+    console.log("Inside javascript..");
+    console.log(model.vertex);
+    for(i = 0; i < model.edges.length; ++i){
+        var edge = model.edges[i];
+        console.log(edge.id + ", " + edge.src + " --> " + edge.trg);
+    }
+
+    //transform();
+    //checkConstraints();
+    //transform();
+
+    var start = new Date().getTime();
+
+    checkconformance();
+
+    var end = new Date().getTime();
+    var time = end - start;
+
+    console.log("Total processing time:: " + time);
+</script>
+
+</body>
+</html>

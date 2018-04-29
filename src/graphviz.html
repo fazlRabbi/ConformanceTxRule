@@ -1,0 +1,119 @@
+
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Webgraphviz</title>
+</head>
+<body>
+
+<style>
+    button { margin:4px; cursor:pointer; font-size: 70%; font-family; arial,sans-serif; margin-right: 5px }
+</style>
+
+<table>
+	<tr>
+		<td>
+<!--button id="sample_1_btn" disabled>Sample 1</button-->
+<textarea id="graphviz_data" rows="20" cols="80" width="100%" wrap="off">
+digraph "unix" {
+	graph [	fontname = "Helvetica-Oblique",
+		fontsize = 16,
+		label = "\nLHS",
+		size = "12,12" ];
+	node [	shape = polygon,
+		sides = 4,
+		distortion = "0.0",
+		orientation = "0.0",
+		skew = "0.0",
+		color = white,
+		style = filled,
+		fontname = "Helvetica-Outline" ];
+	"A" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=salmon2];
+	"B" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=deepskyblue];
+	"C" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=salmon2];
+	"D" [sides=4, distortion="0.0", orientation=0, skew="0.0", color= "0.650 0.700 0.700"];
+	"E" [sides=4, distortion="0.0", orientation=0, skew="0.0", color= "0.150 0.700 0.700"];
+        "A" -> "B";
+	"A" -> "C" [ label = "ac" ];
+	"B" -> "C";
+	"A" -> "D";
+	"D" -> "B";
+        "E" -> "C";
+        "C" -> "E";
+}
+</textarea>
+
+		</td>
+		<td>
+    <button id="generate_btn" disabled style="font-size: 120%"><b>Loading...</b>
+        <!-- The "update"  -->
+    </button>
+
+<div id="graphviz_svg_div">
+    <!-- Target for dynamic svg generation -->
+</div>
+		</td>
+	</tr>
+</table>
+</body>
+
+<!-- Defer loading of javascript by placing these tags at the tail end of the document -->
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
+<!--script-- language="javascript" type="text/javascript" src="./jquery-1.11.2.min"> </script-->
+<script language="javascript" type="text/javascript" src="./viz.js"></script>
+<script language="javascript" type="text/javascript" src="./site.js"> </script>
+<script src="data.js"></script>
+<script src="common.js"></script>
+
+<script>
+	setColorToModel();
+</script>
+
+<script type="bogus" id="sample1_text">
+digraph "unix" {
+	graph [	fontname = "Helvetica-Oblique",
+		fontsize = 16,
+		label = "\nLHS",
+		size = "12,12" ];
+	node [	shape = polygon,
+		sides = 4,
+		distortion = "0.0",
+		orientation = "0.0",
+		skew = "0.0",
+		color = white,
+		style = filled,
+		fontname = "Helvetica-Outline" ];
+	"A" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=salmon2];
+	"B" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=deepskyblue];
+	"C" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=salmon2];
+	"D" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=deepskyblue];
+	"E" [sides=4, distortion="0.0", orientation=0, skew="0.0", color=salmon2];
+        "A" -> "B";
+	"A" -> "C";
+	"B" -> "C";
+	"A" -> "D";
+	"D" -> "B";
+        "E" -> "C";
+        "C" -> "E";
+}
+</script>
+
+<script type="bogus" id="sample2_text">
+    digraph finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle];
+	node [shape = circle ];
+        A -> B [ label = "ab" ];
+        B -> C [ label = "bc" ];
+        A -> D [ label = "ad" ];
+        A -> E [ label = "ae" ];
+        B -> D [ label = "bd" ];
+        C -> E [ label = "ce" ];
+        D -> E [ label = "de" ];
+        C -> A [ label = "ca" ];
+D -> C [ label = "de" ];
+B -> E [ label = "be" ];
+}
+</script>
+</html>

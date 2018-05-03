@@ -113,9 +113,24 @@ function setColorToModel(){
     if(model && model.vertex) {
         for (var i = 0; i < model.vertex.length; ++i) {
             var red = 0.3 + Math.random();
-            var green = Math.random();
-            var blue = 0.3 + Math.random();
+            var green = 0.2 + Math.random();
+            var blue = 0.6 + Math.random();
             model.vertex[i].color = {"red": red, "green": green, "blue": blue};
+        }
+    }
+}
+
+function setColorToPredicates(){
+    if(predicates) {
+        for(var p = 0; p < predicates.length; ++p) {
+            if(predicates[p].arity.vertex) {
+                for (var i = 0; i < predicates[p].arity.vertex.length; ++i) {
+                    var red = 0.4 + Math.random();
+                    var green = 0.6 + Math.random();
+                    var blue = 0.5 + Math.random();
+                    predicates[p].arity.vertex[i].color = {"red": red, "green": green, "blue": blue};
+                }
+            }
         }
     }
 }

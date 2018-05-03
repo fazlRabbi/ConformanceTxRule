@@ -10,6 +10,8 @@ var matchCount2 = 0;
 
 function checkconformance(){
     console.log("Inside check_conformance() ");
+    var constraint_name = "";
+    var semantic_index = 0;
 
     for(var i = 0; i < rules.length; ++i){
         theRule = rules[i];
@@ -115,11 +117,13 @@ function checkconformance(){
         for(var j = 0; j < constraints.length; ++j){
             theConst = constraints[j];
             console.log("checking constraint " + theConst.name);
+            constraint_name = theConst.name;
 
             thePredicate = getPredicateByName(theConst.srcPredicate);
             console.log(thePredicate.name);
 
             for(var n = 0; n < thePredicate.semantics.length; ++n){
+                semantic_index = n;
                 var theSemantic = thePredicate.semantics[n];
                 var L = theSemantic.L;
                 var R = theSemantic.R;
@@ -393,11 +397,15 @@ function checkconformance(){
                 break;
         }
 
-        if(conformanceFlag)
+        if(conformanceFlag) {
             console.log("Rule " + theRule.name + " is conformant");
-        else
+            return "Rule " + theRule.name + " is conformance preserving";
+        }
+        else {
             console.log("Rule " + theRule.name + " is not conformant");
+            return "Rule " + theRule.name + " is not conformance preserving. Violating constraint " + constraint_name + " for semantic " + semantic_index;
+        }
     }
-    console.log("done with conformance checking...")
+
 }
 

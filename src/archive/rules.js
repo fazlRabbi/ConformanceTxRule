@@ -20,41 +20,39 @@ var predicates = [
         name: "test",
         arity: {
             vertex: [
-                {name: "W"},
                 {name: "X"},
                 {name: "Y"},
                 {name: "Z"}
             ],
             edges: [
-                {name: "WX", src: "W", trg: "X"},
-                {name: "WY", src: "W", trg: "Y"},
-                {name: "XZ", src: "X", trg: "Z"}
+                {name: "XY", src: "X", trg: "Y"},
+                {name: "XZ", src: "X", trg: "Z"},
+                {name: "YZ", src: "Y", trg: "Z"}
             ]
         },
         semantics: [
             {
                 L: {
                     vertex: [
-                        {name: "a", type: "W"},
-                        {name: "d", type: "X"},
-                        {name: "c", type: "Y"}
+                        {name: "x", type: "X"},
+                        {name: "y", type: "Y"},
+                        {name: "z", type: "Z"}
                     ],
                     edges: [
-                        {name: "ad", src: "a", trg: "d", type: "WX"},
-                        {name: "ac", src: "a", trg: "c", type: "WY"}
+                        {name: "xy", src: "x", trg: "y", type: "XY"},
+                        {name: "xz", src: "x", trg: "z", type: "XZ"}
                     ]
                 },
                 R: {
                     vertex: [
-                        {name: "a", type: "W"},
-                        {name: "d", type: "X"},
-                        {name: "c", type: "Y"},
-                        {name: "b", type: "Z"}
+                        {name: "x", type: "X"},
+                        {name: "y", type: "Y"},
+                        {name: "z", type: "Z"}
                     ],
                     edges: [
-                        {name: "ad", src: "a", trg: "d", type: "WX"},
-                        {name: "ac", src: "a", trg: "c", type: "WY"},
-                        {name: "db", src: "d", trg: "b", type: "XZ"}
+                        {name: "xy", src: "x", trg: "y", type: "XY"},
+                        {name: "xz", src: "x", trg: "z", type: "XZ"},
+                        {name: "yz", src: "y", trg: "z", type: "YZ"}
                     ]
                 },
                 NegR: {
@@ -70,16 +68,14 @@ var constraints = [
         name: "delta1",
         srcPredicate: "test",
         nodeMaps: [
-            {src: "W", trg: "GV2"},
-            {src: "X", trg: "GV3"},
+            {src: "X", trg: "GV2"},
             {src: "Y", trg: "GV0"},
             {src: "Z", trg: "GV1"}
         ],
         edgeMaps: [
-            {src: "WX", trg: "GE1"},
-            {src: "WY", trg: "GE2"},
-            {src: "XZ", trg: "GE5"}
+            {src: "XY", trg: "GE2"},
+            {src: "XZ", trg: "GE0"},
+            {src: "YZ", trg: "GE5"}
         ]
     }
 ];
-

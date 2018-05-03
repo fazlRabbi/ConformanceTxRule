@@ -1,13 +1,118 @@
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Conformance Preserving Model Transformation</title>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Webgraphviz</title>
 </head>
-<body>
+<body >
+
+<style>
+    button { margin:4px; cursor:pointer; font-size: 70%; font-family; arial,sans-serif; margin-right: 5px }
+</style>
+
+
+<table>
+    <tr>
+        <td>
+            Select Predicate:
+            <select id="selectPredicates"></select>
+            <button id="generate_pred_btn" disabled ><b>Loading...</b></button>
+            Constraints:
+            <select id="selectConstraints"></select>
+            <button id="generate_const_btn" disabled ><b>Loading...</b></button>
+
+            <table border="1">
+                <tr>
+                    <td colspan="3">
+                        <div id="graphviz_svg_div_pred_arity">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="graphviz_svg_div_pred_L">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+
+                    </td>
+                    <td>
+                        <div id="graphviz_svg_div_pred_R">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+
+                    </td>
+                    <td>
+                        <div id="graphviz_svg_div_pred_NegR">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <div id="graphviz_svg_div">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            <table border="1">
+                <tr>
+                    <td>
+                        <div id="graphviz_svg_div_rule_X">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+                    </td>
+                    <td>
+                        <div id="graphviz_svg_div_rule_LHS">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+                    </td>
+                    <td>
+                        <div id="graphviz_svg_div_rule_K">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+                    </td>
+                    <td>
+                        <div id="graphviz_svg_div_rule_RHS">
+                            <!-- Target for dynamic svg generation -->
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<!-- The "update"  -->
+<button id="conformancecheck" onclick="performConformanceChecking();"><b>Check Conformance</b>
+</button>
+
+<span id="testResult"></span>
+
+</body>
+
+
+
+
+<!-- Defer loading of javascript by placing these tags at the tail end of the document -->
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
+<!--script-- language="javascript" type="text/javascript" src="./jquery-1.11.2.min"> </script-->
+<script language="javascript" type="text/javascript" src="./viz.js"></script>
+<script language="javascript" type="text/javascript" src="./site.js"> </script>
 <script src="data.js"></script>
 <script src="common.js"></script>
 <script src="constraintchecking.js"></script>
-<script src="rules.js"></script>
 <script src="transformation.js"></script>
 <script src="Pattern1_1.js"></script>
 <script src="Pattern1_2.js"></script>
@@ -15,29 +120,38 @@
 <script src="Pattern3_1.js"></script>
 <script src="conformancechecker.js"></script>
 
-<span id="output" value="">Span</span>
-
 <script>
-    console.log("Inside javascript..");
-    console.log(model.vertex);
-    for(i = 0; i < model.edges.length; ++i){
-        var edge = model.edges[i];
-        console.log(edge.id + ", " + edge.src + " --> " + edge.trg);
+    setColorToModel();
+    setColorToPredicates();
+    var select = document.getElementById('selectPredicates');
+
+    for (var i = 0; i<predicates.length; i++){
+        console.log(predicates[i].name);
+        var opt = document.createElement("option");
+        opt.value = i;
+        opt.innerHTML = i;
+        opt.text = predicates[i].name;
+        select.add(opt);
     }
 
-    //transform();
-    //checkConstraints();
-    //transform();
 
-    var start = new Date().getTime();
+    function performConformanceChecking(){
+        var result = document.getElementById('testResult');
 
-    checkconformance();
+        var start = new Date().getTime();
 
-    var end = new Date().getTime();
-    var time = end - start;
+        result.innerHTML = checkconformance();
 
-    console.log("Total processing time:: " + time);
+        var end = new Date().getTime();
+        var time = end - start;
+
+        console.log("start:: " + start);
+        console.log("end:: " + end);
+        console.log("Total processing time:: " + time);
+
+
+    }
 </script>
 
-</body>
+
 </html>

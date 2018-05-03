@@ -24,10 +24,9 @@ var instance = {
         {name: "C1", type: "C"}
     ],
     edges: [
-        {name: "Relation1", src: "A1", trg: "B1", type: "rel1"},
-        //{name: "Relation2", src: "A2", trg: "B2", type: "rel1"},
-        {name: "Relation2", src: "B1", trg: "C1", type: "rel2"}
-        //{name: "Relation3", src: "A1", trg: "C1", type: "rel3"}
+        {name: "Relation1", src: "A1", trg: "B1", type: "AB"},
+        //{name: "Relation2", src: "A2", trg: "B2", type: "AB"},
+        {name: "Relation3", src: "A1", trg: "C1", type: "AC"}
 
     ]
 };
